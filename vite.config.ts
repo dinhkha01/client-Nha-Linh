@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss(),],
   server: {
+    allowedHosts: ['devserver-master--endearing-babka-2aa929.netlify.app'],
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
