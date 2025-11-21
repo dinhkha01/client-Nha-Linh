@@ -264,6 +264,30 @@
   background: var(--surface-glass-hover);
 }
 
+.quantum-card-primary {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(56, 189, 248, 0.25);
+  background-image: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%);
+}
+
+.quantum-card-secondary {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 92, 246, 0.3);
+  background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.2), transparent 55%);
+}
+
+.quantum-card-success {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(16, 185, 129, 0.28);
+  background-image: radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.2), transparent 55%);
+}
+
+.quantum-card-warning {
+  border-color: rgba(245, 158, 11, 0.7);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(245, 158, 11, 0.3);
+  background-image: radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.2), transparent 55%);
+}
+
 .quantum-card .ant-card-body {
   padding: 24px;
   position: relative;
@@ -661,6 +685,19 @@
   transition: var(--transition-smooth) !important;
 }
 
+.quantum-input .ant-input-number-input,
+.quantum-input .ant-input-number-input-wrap input {
+  background: transparent !important;
+  /* color: var(--text-primary) !important; */
+  border: none !important;
+}
+
+.quantum-input .ant-input-number-group-addon {
+  background: var(--surface-elevated) !important;
+  border-left: 1px solid var(--border-glass) !important;
+  color: var(--text-secondary) !important;
+}
+
 .quantum-input:hover,
 .quantum-date-picker:hover,
 .quantum-time-picker:hover {
@@ -791,6 +828,46 @@
 
 .quantum-modal .ant-modal-body {
   padding: 32px !important;
+}
+
+.quantum-modal .ant-modal-footer {
+  border-top: 1px solid var(--border-glass) !important;
+  background: transparent !important;
+  padding: 16px 24px !important;
+}
+
+.quantum-modal .ant-btn-default {
+  background: var(--surface-glass) !important;
+  border-color: var(--border-glass) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 999px !important;
+  padding-inline: 20px !important;
+  font-weight: 500 !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.quantum-modal .ant-btn-default:hover {
+  background: var(--surface-glass-hover) !important;
+  color: var(--text-primary) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.quantum-modal .ant-btn-primary {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  border-radius: 999px !important;
+  padding-inline: 24px !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-md), var(--shadow-glow) !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.quantum-modal .ant-btn-primary:hover {
+  background: var(--gradient-secondary) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow) !important;
 }
 
 .quantum-alert {
@@ -2026,14 +2103,14 @@
   margin: 0 0 4px 0;
   font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
+  color: #e5e7eb;
   font-family: 'Poppins', system-ui, sans-serif;
 }
 
 .elegant-date {
   margin: 0;
   font-size: 14px;
-  color: #6b7280;
+  color: #9ca3af;
   font-weight: 500;
 }
 
@@ -2056,7 +2133,7 @@
   display: block;
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
+  color: #9ca3af;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -2065,8 +2142,8 @@
 .elegant-time-picker {
   width: 100% !important;
   height: 56px !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 2px solid rgba(139, 92, 246, 0.15) !important;
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(148, 163, 184, 0.7) !important;
   border-radius: 16px !important;
   backdrop-filter: blur(10px) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -2099,7 +2176,7 @@
 }
 
 .elegant-time-picker .ant-picker-input input {
-  color: #1f2937 !important;
+  color: #e5e7eb !important;
   font-weight: 700 !important;
   font-size: 20px !important;
   font-family: 'JetBrains Mono', monospace !important;
@@ -2162,14 +2239,14 @@
   display: block;
   font-size: 32px;
   font-weight: 800;
-  color: #1f2937;
+  color: #f9fafb;
   font-family: 'Poppins', system-ui, sans-serif;
   line-height: 1;
 }
 
 .duration-unit {
   font-size: 14px;
-  color: #6b7280;
+  color: #9ca3af;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -2178,39 +2255,39 @@
 .duration-description {
   margin: 0;
   font-size: 14px;
-  color: #6b7280;
+  color: #9ca3af;
   font-weight: 500;
   text-align: center;
 }
 
 .elegant-actions {
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .elegant-btn {
-  flex: 1;
-  height: 48px;
-  border-radius: 12px;
+  padding: 10px 20px;
+  border-radius: 999px;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .cancel-btn {
-  background: #f3f4f6;
-  color: #6b7280;
-  border: 2px solid #e5e7eb;
+  background: rgba(15, 23, 42, 0.85);
+  color: rgba(209, 213, 219, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.6);
 }
 
 .cancel-btn:hover {
-  background: #e5e7eb;
-  color: #374151;
+  background: rgba(30, 64, 175, 0.9);
+  color: #e5e7eb;
   transform: translateY(-2px);
   box-shadow: 
     0 4px 12px rgba(139, 92, 246, 0.08),
@@ -2255,8 +2332,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid #e5e7eb;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
   border-radius: 12px;
   backdrop-filter: blur(10px);
 }
@@ -2264,16 +2341,16 @@
 .history-time {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
-  color: #374151;
+  color: #e5e7eb;
   font-size: 14px;
 }
 
 .history-hours {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  color: #059669;
+  color: #bbf7d0;
   font-size: 14px;
-  background: #d1fae5;
+  background: rgba(22, 163, 74, 0.25);
   padding: 4px 8px;
   border-radius: 6px;
 }

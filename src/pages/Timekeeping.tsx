@@ -41,9 +41,6 @@ import {
   WalletOutlined,
   CheckCircleOutlined,
   TeamOutlined,
-  EyeOutlined,
-  CodeOutlined,
-  ExperimentOutlined,
 } from "@ant-design/icons";
 import { DownloadOutlined } from "@ant-design/icons";
 import * as XLSX from "xlsx";
@@ -56,7 +53,7 @@ type SelectedDay = {
   totalHours?: number;
 };
 
-type ViewMode = "dashboard" | "calendar" | "analytics" | "hologram";
+type ViewMode = "dashboard" | "calendar" | "analytics";
 
 export default function TimekeepingPage() {
   const [staffList, setStaffList] = useState<Staff[]>([]);
@@ -68,7 +65,6 @@ export default function TimekeepingPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("dashboard");
   const [quickActionsOpen, setQuickActionsOpen] = useState(false);
   const [aiSuggestions, setAiSuggestions] = useState(true);
-  const [hologramMode, setHologramMode] = useState(false);
 
   const [timeModalOpen, setTimeModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<SelectedDay | null>(null);
@@ -381,44 +377,8 @@ export default function TimekeepingPage() {
 
   const salaryTrend = getSalaryTrend();
 
-  // Hologram View Component
-  const HologramView = () => (
-    <div className="hologram-container">
-      <div className="hologram-grid">
-        {daysArray.map((day) => {
-          const date = currentMonth.date(day);
-          const dateStr = date.format("YYYY-MM-DD");
-          const hours = dailyMap[dateStr] ?? 0;
-          const isToday = dateStr === todayKey;
-          const dayPercent = Math.min(100, Math.round((hours / dailyTargetHours) * 100));
-
-          return (
-            <div
-              key={day}
-              className={`hologram-cell ${isToday ? 'hologram-today' : ''} ${hours > 0 ? 'hologram-active' : ''}`}
-              onClick={() => openDayModal(day)}
-            >
-              <div className="hologram-content">
-                <div className="hologram-day">{day}</div>
-                <div className="hologram-hours">{hours > 0 ? `${hours}h` : '--'}</div>
-                <div className="hologram-bar">
-                  <div
-                    className="hologram-progress"
-                    style={{ width: `${dayPercent}%` }}
-                  />
-                </div>
-              </div>
-
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-
   return (
-    <div className={`quantum-app ${hologramMode ? 'hologram-mode' : ''}`}>
+    <div className="quantum-app">
       <div className="app-container">
         <Flex vertical gap={40}>
           {/* Quantum Header */}
@@ -473,19 +433,9 @@ export default function TimekeepingPage() {
                       { label: <Space><DashboardOutlined />Dashboard</Space>, value: "dashboard" },
                       { label: <Space><CalendarOutlined />Lịch</Space>, value: "calendar" },
                       { label: <Space><LineChartOutlined />Phân tích</Space>, value: "analytics" },
-                      { label: <Space><EyeOutlined />Hologram</Space>, value: "hologram" },
                     ]}
                     className="quantum-segmented"
                   />
-
-                  <Button
-                    icon={<ExperimentOutlined />}
-                    type={hologramMode ? "primary" : "default"}
-                    onClick={() => setHologramMode(!hologramMode)}
-                    className="quantum-mode-btn"
-                  >
-                    {hologramMode ? "3D HOLOGRAM" : "2D CLASSIC"}
-                  </Button>
                 </Flex>
               </Space>
 
@@ -746,10 +696,7 @@ export default function TimekeepingPage() {
                   </Flex>
                 }
               >
-                {viewMode === 'hologram' ? (
-                  <HologramView />
-                ) : (
-                  <Flex vertical gap={32}>
+                <Flex vertical gap={32}>
                     {/* Control Panel */}
                     <Row gutter={[20, 20]} className="quantum-controls">
                       <Col xs={24} sm={8}>
@@ -862,7 +809,7 @@ export default function TimekeepingPage() {
                       })}
                     </div>
                   </Flex>
-                )}
+                
               </Card>
             </Col>
           </Row>
@@ -890,12 +837,6 @@ export default function TimekeepingPage() {
           icon={<CalendarOutlined />}
           tooltip="Về hiện tại"
           onClick={() => setCurrentMonth(dayjs())}
-        />
-        <FloatButton
-          icon={<CodeOutlined />}
-          tooltip="Chế độ Hologram"
-          onClick={() => setHologramMode(!hologramMode)}
-          type={hologramMode ? "primary" : "default"}
         />
         <FloatButton
           icon={<SettingOutlined />}
@@ -1081,13 +1022,6 @@ export default function TimekeepingPage() {
             <div className="setting-info">
               <Text className="setting-title">Tự động lưu dự phòng</Text>
               <Text className="setting-desc">Sao lưu dữ liệu tự động trên đám mây lượng tử</Text>
-            </div>
-          </div>
-          <div className="quantum-setting-item">
-            <Switch checked={hologramMode} onChange={setHologramMode} className="quantum-switch" />
-            <div className="setting-info">
-              <Text className="setting-title">Chế độ Hologram 3D</Text>
-              <Text className="setting-desc">Trải nghiệm giao diện 3D tương tác đa chiều</Text>
             </div>
           </div>
         </Space>
