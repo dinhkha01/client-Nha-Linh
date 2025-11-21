@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-    baseURL: "/",
+    baseURL: import.meta.env.VITE_API_BASE_URL || "/",
 });
 
 export type Staff = {
@@ -21,15 +21,15 @@ export type WorkLog = {
 };
 
 export type MonthlySummary = {
-    // Backend variant A (original FE expectation)
+   
     daily?: Array<{ date?: string; workDate?: string; totalHours: number }>;
-    // Backend variant B (current BE returns map)
+  
     dailyHours?: Record<string, number>;
-    // Totals
+    
     totalHours: number;
-    // Optional metadata some backends may return
+  
     year?: number;
-    month?: number; // 1-12, optional when backend returns YearMonth
+    month?: number; 
 };
 
 export type SalaryCalculation = {
